@@ -1,0 +1,52 @@
+USE_ TRACING: False 
+
+DEVICE: cpu # used only for embeddings ans propositionizer
+
+TEXT_SPLIT_MODE: default
+
+MODELS_DIR: ./models
+
+EMBEDDINGS_PATH: sentence-transformers/all-mpnet-base-v2
+EMBEDDING_MODEL: sentence-transformers/all-mpnet-base-v2
+
+LLM_PATH: llama-3.1-70b-versatile
+LLM_TYPE: groq
+PROMPT_TYPE: llama3
+
+# VECTORDB_TYPE: faiss
+# VECTORDB:
+#   - PATH: ./vectordb/faiss
+#     NAME: document
+#     DESCRIPTION: Provides information about the document. Always use this first.
+
+VECTORDB_TYPE: chroma
+VECTORDB:
+  - PATH: ./vectordb/chroma
+    NAME: document
+    DESCRIPTION: Provides information about the document. Always use this first.
+    
+
+LLM_CONFIG:
+  MAX_NEW_TOKENS: 512
+  TEMPERATURE: 0.2
+  REPETITION_PENALITY: 1.1
+  CONTEXT_LENGTH: 4000
+
+
+PROPOSITIONER_PATH: propositionizer-wiki-flan-t5-large
+PROPOSITIONER_CONFIG:
+  CHUNK_SIZE: 1000
+  CHUNK_OVERLAP: 0
+
+BASE_RETRIEVER_CONFIG:
+  SEARCH_K: 4
+
+COMPRESSION_RETRIVER_CONFIG:
+  SEARCH_K: 10
+  SIMILARITY_THRESOLD: 0.5
+ 
+
+
+
+
+  
